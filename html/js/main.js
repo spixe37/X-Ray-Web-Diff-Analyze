@@ -1,3 +1,7 @@
+/* Constants */
+const TEXT_ENTER_MESSAGE = "Введите значение";
+const BUTTON_ENTER = "Ввод";
+const BUTTON_EMPTY_FIELDS = "Заполните поля"
 /* Loading of page */
 function init() {
     //alert("Loaded");
@@ -18,7 +22,8 @@ function init() {
     sortSelect(list);
     
     // First call text fields function on start
-    createText(1)
+    createTextFields(1)
+    checkbutton()
 }
 
 // Adding initialization on start
@@ -46,16 +51,32 @@ function createTextFields(count) {
         
         // Creating input
         var input = document.createElement("input");
-        // Adding class to input
+        
+        // Adding classes to input
         input.classList.add("form-control");
+        input.classList.add("intext");
+        
         // Adding type to input
         input.type = "text";
-        input.placeholder = "Введите значение";
+        // Adding placeholder
+        input.placeholder = TEXT_ENTER_MESSAGE;
+        // Adding input
         text.appendChild(input);
     }
+    checkbutton()
     //alert(optionNumber);
 }
 
+function checkbutton() {
+    text = document.getElementById("text1");
+    alert(text.childNodes.length)
+}
+
+/* Utils
+--------------------------------------------------------
+*/
+
+// Removing childs
 function removeChilds(selfElem) {
     while (selfElem.hasChildNodes()) {
                 selfElem.removeChild(selfElem.lastChild);
