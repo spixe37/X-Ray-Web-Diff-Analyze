@@ -2,6 +2,7 @@
 const TEXT_ENTER_MESSAGE = "Введите значение";
 const BUTTON_ENTER = "Ввод";
 const BUTTON_EMPTY_FIELDS = "Заполните поля"
+
 /* Loading of page */
 function init() {
     //alert("Loaded");
@@ -23,7 +24,9 @@ function init() {
     
     // First call text fields function on start
     createTextFields(1)
-    checkbutton()
+    
+    //Check Button
+    checkbutton();
 }
 
 // Adding initialization on start
@@ -58,18 +61,41 @@ function createTextFields(count) {
         
         // Adding type to input
         input.type = "text";
+        
+        input.change = checkbutton();
         // Adding placeholder
         input.placeholder = TEXT_ENTER_MESSAGE;
+        
         // Adding input
         text.appendChild(input);
     }
-    checkbutton()
     //alert(optionNumber);
 }
 
+// Set button types
 function checkbutton() {
-    text = document.getElementById("text1");
-    alert(text.childNodes.length)
+    btn = document.getElementById("chkbutton");
+    if(!checktext()) {
+        btn.classList.remove("btn-success");
+        btn.classList.add("btn-danger");
+        btn.lastChild.data = BUTTON_EMPTY_FIELDS;
+    } else {
+        btn.classList.remove("btn-danger");
+        btn.classList.add("btn-success");
+        btn.lastChild.data = BUTTON_ENTER;
+    }
+}
+
+// Cheking empty fields
+function checktext() {
+    check = true;
+    for(var i=0; i < text.childNodes.length; i++) {
+        if(document.getElementsByClassName('intext')[i].value.length <= 0){
+            check = false;
+            break;
+        }
+    }
+    return check;
 }
 
 /* Utils
@@ -81,6 +107,17 @@ function removeChilds(selfElem) {
     while (selfElem.hasChildNodes()) {
                 selfElem.removeChild(selfElem.lastChild);
     }
+}
+
+// Check empty
+function isEmpty(item) {
+    
+    // Removing spaces
+    item = item.trim();
+    
+    if(item.length > 0)
+        return true;
+    return false;
 }
 
 /* https://stackoverflow.com/questions/278089/javascript-to-sort-contents-of-select-element*/
