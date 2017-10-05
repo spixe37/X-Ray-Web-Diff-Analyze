@@ -2,10 +2,15 @@
 const TEXT_ENTER_MESSAGE = "Введите значение";
 const BUTTON_ENTER = "Ввод";
 const BUTTON_EMPTY_FIELDS = "Заполните поля"
+const BUTTON_CLEAR = "Очистить"
 
 /* Loading of page */
 function init() {
     //alert("Loaded");
+    
+    // Clear button
+    clearf = document.getElementById("clearf");
+    clearf.value = BUTTON_CLEAR;
     
     // ListBox
     list = document.getElementById("list1");
@@ -32,6 +37,10 @@ function init() {
 // Adding initialization on start
 window.onload = init;
 
+// Add Ajax And write Servlet
+function sendInfo() {
+    return
+}
 // Creating text fields
 function createTextFields(count) {
     
@@ -41,6 +50,7 @@ function createTextFields(count) {
     
     // ListBox
     list = document.getElementById("list1");
+    
     // Text form
     text = document.getElementById("text1");
     
@@ -63,6 +73,9 @@ function createTextFields(count) {
         input.type = "text";
         
         input.change = checkbutton();
+        
+        input.onchange = checkbutton();
+        
         // Adding placeholder
         input.placeholder = TEXT_ENTER_MESSAGE;
         
@@ -74,7 +87,11 @@ function createTextFields(count) {
 
 // Set button types
 function checkbutton() {
+    
+    // Send button
     btn = document.getElementById("chkbutton");
+    
+    // Checking text fields for length
     if(!checktext()) {
         btn.classList.remove("btn-success");
         btn.classList.add("btn-danger");
@@ -89,6 +106,7 @@ function checkbutton() {
 // Cheking empty fields
 function checktext() {
     check = true;
+    text = document.getElementById("text1")
     for(var i=0; i < text.childNodes.length; i++) {
         if(document.getElementsByClassName('intext')[i].value.length <= 0){
             check = false;
@@ -96,6 +114,15 @@ function checktext() {
         }
     }
     return check;
+}
+
+// Clearing fileds
+function clearfields(){
+    arr = document.getElementsByClassName('intext')
+    for(var i=0; i < arr.length; i++){
+        arr[i].value=null;
+    }
+    checkbutton();
 }
 
 /* Utils
