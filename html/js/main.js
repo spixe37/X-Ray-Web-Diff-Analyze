@@ -39,7 +39,31 @@ window.onload = init;
 
 // Add Ajax And write Servlet
 function sendInfo() {
-    return
+    
+    if(!checktext())
+        return;
+    var body = [];
+    
+    text = document.getElementById("text1")
+    for(var i=0; i < text.childNodes.length; i++) {
+        body.push(document.getElementsByClassName('intext')[i].value);
+    }
+    
+    jbody = JSON.stringify(body);
+    //alert(jbody);
+    
+    var xhr = new XMLHttpRequest();
+    
+    
+    xhr.open("POST", "/xray-1.0/" + "?info=" + jbody, true)
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("outtext").innerHTML = xhr.responseText;
+        }
+    }
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    xhr.send();
+    
 }
 // Creating text fields
 function createTextFields(count) {
