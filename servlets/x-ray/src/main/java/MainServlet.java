@@ -5,20 +5,46 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainServlet extends HttpServlet
 {
+    public static final String URL = "jdbc:mysql://178.170.189.211:3306/xraydata?autoReconnect=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    public static final String USER = "spixe";
+    public static final String PASSWORD = "Katya1998";
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        DataBase.getInstance();
+        Connection connection = null;
+        Driver driver;
+
+        try {
+            driver = new com.mysql.cj.jdbc.Driver();
+            DriverManager.registerDriver(driver);
+        }
+        catch (SQLException e1) {
+            System.out.println("Драйвер не зарегистрировался");
+            return;
+        }
+        try {
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            if (!connection.isClosed())
+                System.out.println("Соединение установлено");
+        }catch (SQLException ex){
+            System.err.println("Соединение не установлено");
+            ex.printStackTrace(); // Понадобился, чтобы отловить исключения, скрытые выводом на экран предупреждения
+            return;
+        } finally {
+            if (connection != null) connection.close();
+        }
     }
 
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
-        DataBase.getInstance().getConnection().close();
     }
 
     @Override
