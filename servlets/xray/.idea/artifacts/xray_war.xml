@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="xray:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="xray-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="xray:war exploded" />
-    </root>
-  </artifact>
-</component>

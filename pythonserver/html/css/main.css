@@ -1,0 +1,13 @@
+
+body {
+    background-color: #fff;
+}
+.topnav {
+    height: 60px;
+    background-color: rgba(242, 242, 242, 0.3);
+}
+
+
+#outtext {
+    height: 460px;
+}

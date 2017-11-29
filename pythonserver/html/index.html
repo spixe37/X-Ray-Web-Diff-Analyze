@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>X-Ray Diff Analyze</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+<!--    <script src="js/bootstrap.min.js"></script>-->
+    <script src="./js/main.js"></script>
+</head>
+<body>
+    <div class="container">
+       <div class="row">
+           <div class="col-sm-12 topnav">
+               <h1>X-Ray Diff Analyze</h1>
+           </div>
+       </div>
+       <div class="row">
+           <div class="col-sm-4">
+               <div class="form-group" id="frm">
+                    <label for="sel1">Select list:</label>
+                    <select class="form-control" onchange="createTextFields()" id="list1"></select>
+                    <button type="button" class="btn btn-success btn-block" onmouseover="checkbutton()" id="chkbutton" onclick="sendInfo()">Success</button>
+                </div>
+                <label for="usr">Info:</label>
+                <div class="form-group" id="text1" onchange="checkbutton()">
+                      <input type="text" class="form-control" placeholder="Введите значение">
+                </div>
+                <button type="button" class="btn btn-success btn-block" id="clearf" onclick="clearfields()">Очистить</button>
+                
+           </div>
+           <div class="col-sm-8">
+               <div class="form-group">
+                  <label for="comment">Out Info:</label>
+                  <textarea class="form-control" rows="5" id="outtext"></textarea>
+                </div>
+           </div>
+       </div>
+    </div>
+    <script>
+        
+    </script>
+</body>
+</html>

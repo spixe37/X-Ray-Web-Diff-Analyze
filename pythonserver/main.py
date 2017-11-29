@@ -139,17 +139,6 @@ info = [
     (3.7, 2),
 ]
 
-# def compare(data, info):
-#     for i in data:
-#         # Удалить лишние
-#         cmp = list(i)
-#         for j in info:
-#             if i[1] == j[1]:
-#                 print(str(i[0]) + " " + str(i[1]) + " | " + str(j[0]) + " " + str(j[1]))
-#                 if i[0] > j[0]:
-#                     yield j[0]/i[0]*100
-#                 else:
-#                     yield i[0]/j[0]*100
 
 def findNearest(number, array):
     list1 = []
@@ -181,35 +170,20 @@ def get_nearest_value(iterable, value):
 def find(inf):
     for i in datadb:
         dataInfo = datadb[i]
-        out = list(compare(dataInfo, info))[0:len(info)]
+        if len(inf) < 1:
+            continue
+        out = list(compare(dataInfo, inf))[0:len(inf)]
         s = 0
         for j in out:
             s += j
+        if len(out) < 1:
+            continue
         s /= len(out)
         yield (i, s)
 
 
-print(list(find(info)))
+# print(list(find(info)))
 
 
 # Входные - массив из расстояния и номера
 # Выходные данные - (вещество, процентная вероятность)
-'''def find(inf):
-    # Нужно добавить в слова словарь(имени, параметры)
-    outinfo = {"name":"Info"}
-    for i in data:
-        # набор введенных чисел
-        for j in inf:
-            # Проверка ближайших чисел
-            if j in i["info"]:
-                if not i["name"] in outinfo.keys():
-                    outinfo[i["name"]] = list()
-                outinfo[i["name"]].append(j)
-    print(outinfo)
-
-find(info)
-
-# Найти ближайшее число
-
-def findNear(c):
-    pass'''
