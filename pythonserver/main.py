@@ -1,3 +1,4 @@
+import json
 datadb = {
     "Анатаз TiO2": [
         (3.508, 10),
@@ -182,8 +183,17 @@ def find(inf):
         yield (i, s)
 
 
-# print(list(find(info)))
+def loadDB():
+    global datadb
+    outtext = ""
+    with open("data.txt", "r") as file:
+        for i in file:
+            outtext += i
+    datadb = json.loads(outtext)
+    print("@DB loaded")
 
+
+loadDB()
 
 # Входные - массив из расстояния и номера
 # Выходные данные - (вещество, процентная вероятность)
