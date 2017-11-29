@@ -51,7 +51,7 @@ class HTTPHandler(SimpleHTTPRequestHandler):
             outtext = ""
             for i in outlist:
                 outtext += i[0] + " " + str(round(i[1], 2)) + " %\n"
-            print(outtext)
+            # print(outtext)
             self.wfile.write(bytes(outtext.encode('utf-8')))
         except WrongInput as err:
             self.wfile.write(bytes(err.type, "utf8"))
